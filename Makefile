@@ -14,11 +14,11 @@ test:
 
 .PHONY: tailwind-watch
 tailwind-watch:
-	tailwindcss -i ./static/css/input.css -o ./static/css/style.css --watch
+	npx tailwindcss -i /app/static/css/input.css -o /app/static/css/style.css --watch
 
 .PHONY: tailwind-build
 tailwind-build:
-	tailwindcss -i ./static/css/input.css -o ./static/css/style.min.css --minify
+	tailwindcss -i /app/static/css/input.css -o /app/static/css/style.min.css --minify
 
 .PHONY: templ-watch
 templ-watch:
@@ -40,20 +40,20 @@ build:
 
 .PHONY: docker-build
 docker-build:
-	docker-compose -f ./dev/docker-compose.yml build
+	docker compose -f ./dev/docker-compose.yml build
 
 .PHONY: docker-up
 docker-up:
-	docker-compose -f ./dev/docker-compose.yml up
+	docker compose -f ./dev/docker-compose.yml up -d
 
 .PHONY: docker-dev
 docker-dev:
-	docker-compose -f ./dev/docker-compose.yml -f ./dev/docker-compose.dev.yml up
+	docker compose -f ./dev/docker-compose.dev.yml up
 
 .PHONY: docker-down
 docker-down:
-	docker-compose -f ./dev/docker-compose.yml down
+	docker compose -f ./dev/docker-compose.yml down
 
 .PHONY: docker-clean
 docker-clean:
-	docker-compose -f ./dev/docker-compose.yml down -v --rmi all
+	docker compose -f ./dev/docker-compose.yml down -v --rmi all
