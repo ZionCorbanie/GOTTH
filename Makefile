@@ -14,7 +14,7 @@ test:
 
 .PHONY: tailwind-watch
 tailwind-watch:
-	npx tailwindcss -i /app/static/css/input.css -o /app/static/css/style.css --watch
+	tailwindcss -i ./static/css/input.css -o ./static/css/style.min.css --watch
 
 .PHONY: tailwind-build
 tailwind-build:

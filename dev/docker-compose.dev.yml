@@ -9,3 +9,4 @@ services:
       - ENVIRONMENT=development
     ports:
       - "80:4000"
+    tty: true
