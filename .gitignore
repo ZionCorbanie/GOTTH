@@ -10,3 +10,4 @@ static/css/style.css
 internal/templates/*.go
 internal/templates/*.txt
 node_modules/
+.direnv/
