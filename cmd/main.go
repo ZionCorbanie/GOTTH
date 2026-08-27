@@ -67,16 +67,15 @@ func main() {
 		)
 
 		r.NotFound(handlers.NewNotFoundHandler().ServeHTTP)
-
 		r.Get("/", handlers.NewHomeHandler().ServeHTTP)
-
 		r.Get("/about", handlers.NewAboutHandler().ServeHTTP)
 
-		r.Get("/register", handlers.NewGetRegisterHandler().ServeHTTP)
-
-		r.Post("/register", handlers.NewPostRegisterHandler(handlers.PostRegisterHandlerParams{
+		registerHandler := handlers.NewRegisterHandler(handlers.RegisterHandlerParams{
 			UserStore: userStore,
-		}).ServeHTTP)
+		})
+		r.Get("/register", registerHandler.Show)
+		r.Post("/register", registerHandler.Register)
+
 
 		loginHandler := handlers.NewLoginHandler(handlers.LoginHandlerParams{
 			UserStore:         userStore,
@@ -84,7 +83,6 @@ func main() {
 			PasswordHash:      passwordhash,
 			SessionCookieName: cfg.SessionCookieName,
 		})
-
 		r.Get("/login", loginHandler.Show)
 		r.Post("/login", loginHandler.Login)
 		r.Post("/logout", loginHandler.Logout)

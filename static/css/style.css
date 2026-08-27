@@ -7,8 +7,6 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-red-600: oklch(57.7% 0.245 27.325);
     --color-indigo-600: oklch(51.1% 0.262 276.966);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-300: oklch(87.2% 0.01 258.338);
@@ -229,9 +227,6 @@
   .w-full {
     width: 100%;
   }
-  .flex-1 {
-    flex: 1;
-  }
   .flex-grow {
     flex-grow: 1;
   }
@@ -272,9 +267,6 @@
   }
   .bg-primary-600 {
     background-color: oklch(44.6% 0.043 257.281);
-  }
-  .bg-red-600 {
-    background-color: var(--color-red-600);
   }
   .bg-stone-100 {
     background-color: var(--color-stone-100);
@@ -341,9 +333,6 @@
   .text-primary-500 {
     color: oklch(55.4% 0.046 257.417);
   }
-  .text-red-600 {
-    color: var(--color-red-600);
-  }
   .text-white {
     color: var(--color-white);
   }
@@ -378,24 +367,10 @@
       }
     }
   }
-  .hover\:bg-red-500 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-red-500);
-      }
-    }
-  }
   .hover\:text-primary-500 {
     &:hover {
       @media (hover: hover) {
         color: oklch(55.4% 0.046 257.417);
-      }
-    }
-  }
-  .hover\:text-red-500 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-red-500);
       }
     }
   }
@@ -429,11 +404,6 @@
   .focus-visible\:outline-primary-600 {
     &:focus-visible {
       outline-color: oklch(44.6% 0.043 257.281);
-    }
-  }
-  .focus-visible\:outline-red-600 {
-    &:focus-visible {
-      outline-color: var(--color-red-600);
     }
   }
   .sm\:mx-auto {

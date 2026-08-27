@@ -6,21 +6,33 @@ import (
 	"net/http"
 )
 
-type PostRegisterHandler struct {
+
+type RegisterHandler struct {
 	userStore store.UserStore
 }
 
-type PostRegisterHandlerParams struct {
+type RegisterHandlerParams struct {
 	UserStore store.UserStore
 }
 
-func NewPostRegisterHandler(params PostRegisterHandlerParams) *PostRegisterHandler {
-	return &PostRegisterHandler{
+func NewRegisterHandler(params RegisterHandlerParams) *RegisterHandler {
+	return &RegisterHandler{
 		userStore: params.UserStore,
 	}
 }
 
-func (h *PostRegisterHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *RegisterHandler) Show(w http.ResponseWriter, r *http.Request) {
+	c := templates.RegisterPage()
+	err := templates.Layout(c, "My website").Render(r.Context(), w)
+
+	if err != nil {
+		http.Error(w, "Error rendering template", http.StatusInternalServerError)
+		return
+	}
+
+}
+
+func (h *RegisterHandler) Register(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
 	password := r.FormValue("password")
 
