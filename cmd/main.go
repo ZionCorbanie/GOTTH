@@ -78,18 +78,16 @@ func main() {
 			UserStore: userStore,
 		}).ServeHTTP)
 
-		r.Get("/login", handlers.NewGetLoginHandler().ServeHTTP)
-
-		r.Post("/login", handlers.NewPostLoginHandler(handlers.PostLoginHandlerParams{
+		loginHandler := handlers.NewLoginHandler(handlers.LoginHandlerParams{
 			UserStore:         userStore,
 			SessionStore:      sessionStore,
 			PasswordHash:      passwordhash,
 			SessionCookieName: cfg.SessionCookieName,
-		}).ServeHTTP)
+		})
 
-		r.Post("/logout", handlers.NewPostLogoutHandler(handlers.PostLogoutHandlerParams{
-			SessionCookieName: cfg.SessionCookieName,
-		}).ServeHTTP)
+		r.Get("/login", loginHandler.Show)
+		r.Post("/login", loginHandler.Login)
+		r.Post("/logout", loginHandler.Logout)
 	})
 
 	killSig := make(chan os.Signal, 1)
