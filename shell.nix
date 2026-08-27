@@ -4,6 +4,7 @@ pkgs.mkShell {
   buildInputs = with pkgs; [
     go
     gnumake
+    nodejs_26
   ];
 
   shellHook = ''

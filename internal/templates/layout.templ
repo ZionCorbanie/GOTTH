@@ -17,11 +17,11 @@ templ header(title string) {
 }
 
 templ footer() {
-	<footer class="bg-primary-600 p-4"></footer>
+	<footer class="bg-neutral-600 p-4"></footer>
 }
 
 templ nav() {
-	<nav class="bg-primary-600 p-4">
+	<nav class="bg-neutral-600 p-4">
 		<div class="container flex justify-between">
 			<ol class="flex space-x-4">
 				<li>
@@ -51,11 +51,17 @@ templ nav() {
 
 templ Layout(contents templ.Component, title string) {
 	@header(title)
-	<body class="flex flex-col h-full">
-		@nav()
-		<main class="flex-1 container ">
-			@contents
-		</main>
-		@footer()
+	<body class="min-h-screen flex flex-col items-center justify-center bg-stone-100">
+        <div class="flex flex-col justify-center items-center min-h-screen w-full mx-auto">
+            <header class="sticky top-0 bg-primary shadow-xl z-50 lg:rounded-b-lg w-full">
+                @nav()
+            </header>
+            <div class="flex flex-grow flex-col items-center w-full h-full">
+                @contents
+            </div>
+            <footer class="w-full text-center">
+                @footer()
+            </footer>
+        </div>
 	</body>
 }
