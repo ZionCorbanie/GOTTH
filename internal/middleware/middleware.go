@@ -159,6 +159,20 @@ func (m *AuthMiddleware) AddUserToContext(next http.Handler) http.Handler {
 	})
 }
 
+func (m *AuthMiddleware) LoggedIn(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		_, ok := r.Context().Value(UserKey).(*store.User)
+
+		if !ok {
+            target := r.URL.Path
+            http.Redirect(w, r, fmt.Sprintf("/login?redirect=%s", target), http.StatusFound)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
 func GetUser(ctx context.Context) *store.User {
 	user := ctx.Value(UserKey)
 	if user == nil {
@@ -167,3 +181,4 @@ func GetUser(ctx context.Context) *store.User {
 
 	return user.(*store.User)
 }
+

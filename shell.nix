@@ -5,6 +5,7 @@ pkgs.mkShell {
     go
     gnumake
     nodejs_26
+    cargo
   ];
 
   shellHook = ''
